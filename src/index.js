@@ -27,15 +27,13 @@ import './index.css';
         );
     }
 
-    // render board using loops and template literals
-
     renderBoard = () => {
       let renderedBoard = []
       let counter = 0
       for(let i = 1; i <= 3; i++){
         let children = []
         for(let j = 1; j <= 3; j++){
-          children.push(this.renderSquare(counter, `(${i}, ${j})`))
+          children.push(this.renderSquare(counter, `(${j}, ${i})`))
           counter++;
         }     
         let rowNumber = counter/3;
@@ -56,9 +54,7 @@ import './index.css';
   // The Game
   
   class Game extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
+   state = {
         history: [{
           squares: Array(9).fill(null),
           positions: []
@@ -69,7 +65,6 @@ import './index.css';
         order: true,
         winningSquares: [],
       }
-    }
 
     handleClick(i, j) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
@@ -129,7 +124,7 @@ import './index.css';
         const desc = move ? 
           'Go to move #' + move :
           'Go to game start';
-        const location = history[move].positions // go to relevant history array and retrive positions
+        const location = history[move].positions // go to relevant history array and retrieve positions
         // alt : const location = history[move].positions[history[move].positions.length - 1]
         // history object being recreated each move? 1 for 1, 2 for 2, 3 for 3...
         return (

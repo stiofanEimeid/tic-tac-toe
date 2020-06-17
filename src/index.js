@@ -5,8 +5,9 @@ import './index.css';
   // The Square
 
   function Square(props) {
+        const textValue = `${props.winningSquares.includes(props.id)? 'winningSquare square': 'square'}`
         return (         
-          <button className={`${props.winningSquares.includes(props.id)? 'winningSquare square': 'square'}`} onClick={props.onClick}>
+          <button className={textValue} onClick={props.onClick}>
             {props.value} 
           </button>         
         );
@@ -127,9 +128,10 @@ import './index.css';
         const location = history[move].positions // go to relevant history array and retrieve positions
         // alt : const location = history[move].positions[history[move].positions.length - 1]
         // history object being recreated each move? 1 for 1, 2 for 2, 3 for 3...
+        const activeValue = `${this.state.active === move ? 'active': ''}`
         return (
           <li key={move}>
-            <button className={`${this.state.active === move ? 'active': ''}`} onClick={() => this.jumpTo(move)}>{desc} {location[location.length - 1]}</button> 
+            <button className={activeValue} onClick={() => this.jumpTo(move)}>{desc} {location[location.length - 1]}</button> 
           </li>
         )
       });

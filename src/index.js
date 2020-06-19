@@ -37,7 +37,7 @@ import './index.css';
           children.push(this.renderSquare(counter, `(${j}, ${i})`))
           counter++;
         }     
-        let rowNumber = counter/3;
+        let rowNumber = counter/3 + 8;
         renderedBoard.push(<div key = {rowNumber} className="board-row">{children}</div>)
       }
       return renderedBoard;
@@ -88,7 +88,6 @@ import './index.css';
           stepNumber: history.length,
           xIsNext: !this.state.xIsNext,
           active: history.length,
-          // new
           winningSquares: calculateWinner(squares) ? calculateWinner(squares): []
       });
     }
@@ -137,11 +136,7 @@ import './index.css';
       });
       
       // sort according to state
-      if(order){
-        moves.sort((a, b) => b.key-a.key);
-      } else {
-        moves.sort((a, b) => a.key-b.key);
-      }
+      order ? moves.sort((a, b) => b.key-a.key): moves.sort((a, b) => a.key-b.key);
 
       let status;
       if (winner) {
@@ -159,7 +154,6 @@ import './index.css';
             <Board 
               squares={current.squares}
               onClick = {(i, j) => this.handleClick(i, j)}
-              // new
               winningSquares = {this.state.winningSquares}
             />
           </div>
